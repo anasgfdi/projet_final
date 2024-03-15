@@ -1,0 +1,50 @@
+  
+  <div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <a href="{% url 'home' %}" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none" target="_self">
+        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        {% comment %} <img src="{% static 'images/logo.jpeg' %}">  {% endcomment %}
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaFVLe69l4_h2v0rvB5wagLsd7GTPJwwHoGQ&usqp=CAU" width="70" height="50" loading="lazy">
+
+        <span class="fs-4">VisAge</span>
+      </a>
+      <a>
+        {% if  user.is_authenticated%}
+        {% comment %} Afficher l'information qui permet de voir si vous êtes login ou non (dans votre barre de navigation par exemple) {% endcomment %}
+        <span class="navbar-text"> Bonjour {{user.get_username|title}}</span>
+        {% comment %} Revenir sur la page d'acceuil lors du logout. {% endcomment %}
+        {% else %}
+        <span class='navbar-text'> You are not logged in </span>
+        {% endif %}
+      </a>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="#" class="nav-link px-2 link-secondary"><i class="bi bi-house" ></i></a></li>
+        <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark" target="_self">Home</a></li>
+        <li><a href="{% url 'api_app:api_app' %}" class="nav-link px-2 link-dark" target="_self">Services</a></li>
+        <li><a href="{% url 'login' %}" class="nav-link px-2 link-dark" target="_self">Se connecter</a></li>
+        <li><a href="{% url 'signup:sign_up' %}" class="nav-link px-2 link-dark" target="_self">S'inscrire</a></li>
+        {% comment %} {% if  user.is_authenticated%}
+        <span class="navbar-text"> logged as : {{user.get_username}}</span>
+        <a class="btn btn-sm btn-outline-secondary" href="{%url 'logout'%}?next={{request.path}}"> Log out </a> 
+        {% else %}
+        <span class='navbar-text'> You are not logged  </span>
+      {% endif %} {% endcomment %}
+
+      {% if  user.is_authenticated%}
+            {% comment %} Afficher l'information qui permet de voir si vous êtes login ou non (dans votre barre de navigation par exemple) {% endcomment %}
+            
+            <a class="btn btn-primary" href="{%url 'logout'%}?next={{request.path}}"> 
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+              </svg>
+            
+            </a> 
+            {% endif %}
+      </ul> 
+
+    </header>
+  </div>
+
+
