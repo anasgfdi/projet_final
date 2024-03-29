@@ -8,20 +8,15 @@ class PredictionForm(forms.ModelForm):
         model = models.Features
         fields = '__all__'
         labels = {
-            'Industry': 'Choissisez le domaine de votre entreprise',
-            'Term': 'Entrez le temps accordé pour rembourser (en mois)',
-            'GrAppv' :'Entrez le montant accordé par votre banque',
-            'NoEmp': "Entrez le nombre d'employés dans votre entreprise",
-            'NewExist': "Veuillez choisir la catégorie de votre entreprise",
-            'CreateJob': "Entrez le nombre d'emplois crées",
-            'RetainedJob':"Entrez le nombre d'emplois préservés",
-            'FranchiseCode': "Entrez le numéro de votre Entreprise",
-            'UrbanRural': "Etes vous dans une zone urbaine ou rural ?",
-            'Real_estate': "Est ce que vous possédez un patrimoine immobilier ?"
+            'age': 'Age du client',
+            'housing': 'Qualité de logement du client ',
+            'marital' :'Situation marietal du client',
+            'job': "Emploi du client",
+            'loan': "Le client possède t-il un prêt",
+            'balance': "Solde du compte du client",
+            'education':"Niveau de diplôme",
+            'pdays': "Nombre de jours depuis le dernier contact du client lors d'une campagne précédente",
+            'campaign': "Nombre de contacts effectués lors de cette campagne pour le client",
+            'month': "Mois du dernier contact"
         }
 
-class StateForm(forms.ModelForm) :
-    class Meta:
-        model = models.State
-        fields = '__all__'
-        labels={ 'State' : 'Choissisez  la localisation de votre entreprise'}

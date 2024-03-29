@@ -1,28 +1,63 @@
 from django.db import models
 import pandas as pd
-# Create your models here.
+from django.core.validators import MaxValueValidator,MinValueValidator
+
 df = pd.read_csv('data.csv') 
-# indus = df.Industry.unique()
-# state = df.State.unique()
+
+choix_1 = [
+    ('1', 'yes'),
+    ('0', 'no'),
+]
+
+choix_2 = [
+    ('1', 'married'),
+    ('0', 'single'),
+    ('2','divorced')
+]
+
+
+choix_3=[('0','admin.'),
+        ('1','technician'),
+        ('2','services'),
+        ('3','management'),
+        ('4','retired'),
+        ('5','blue-collar'), 
+        ('6','unemployed'),
+        ('7','entrepreneur'),
+        ('8','housemaid'),
+        ('9','unknown'),
+        ('10','self-employed'),
+        ('11','student')
+]
+
+choix_4=[('0','sep.'),
+        ('1','oct'),
+        ('2','nov'),
+        ('3','dec'),
+        ('4','jan'),
+        ('5','fev'), 
+        ('6','mar'),
+        ('7','apr'),
+        ('8','may'),
+        ('9','jun'),
+        ('10','jul'),
+        ('11','aug')
+]
+
+choix_5=[
+    ('0','primary'),
+    ('1','secondary'),
+    ('2','tertiary')
+]
 
 class Features(models.Model):
-
-    # industries = [(i,i) for i in indus]
-    yesno = [('1','Oui'),('0','Non')]
-    urbral = [('0','Non Défini'),('1','Urbain'),('2','Rural')]
-    existing = [('0','Existante'),('1','Nouvelle')]
-    # Industry = models.CharField(max_length=80,choices=industries,default=industries[0])
-    Term = models.PositiveIntegerField(null=False,default=12)
-    NoEmp = models.PositiveIntegerField(null=False,default=5)
-    GrAppv = models.FloatField(null=False,default=10000.0)
-    NewExist = models.CharField(max_length=9,choices=existing,default=existing[0])
-    CreateJob = models.PositiveIntegerField(null=False,default=0)
-    RetainedJob = models.PositiveIntegerField(null=False,default=0)
-    FranchiseCode = models.CharField(max_length= 90 ,null=False,default='1')
-    UrbanRural = models.CharField(max_length=9,choices=urbral,default=urbral[0])
-    Real_estate = models.CharField(max_length=9,choices=yesno,default=yesno[0])
-
-# class State(models.Model):
-#     states = [(i,i) for i in state]
-
-#     State = models.CharField(max_length=3,choices =states,default=state[0])
+    age = models.IntegerField(null=False, validators=[MaxValueValidator(100),MinValueValidator(18)],default=18)
+    housing = models.CharField(max_length=3, choices=choix_1, default=choix_1[0])
+    marital = models.CharField(max_length=3, choices=choix_2, default=choix_2[0])
+    job = models.CharField(max_length=80, choices=choix_3, default=choix_3[0])
+    loan=models.CharField(max_length=3, choices=choix_1, default=choix_1[0])
+    balance = models.IntegerField(null=True, default=10000)
+    education = models.CharField(max_length=80, choices=choix_5, default=choix_5[0])
+    pdays = models.PositiveIntegerField(null=True, default=12)
+    campaign=models.PositiveIntegerField(null=True, default=1)
+    month = models.CharField(max_length=9, choices=choix_4, default=choix_4[0])

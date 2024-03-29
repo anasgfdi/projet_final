@@ -9,17 +9,17 @@ with open('xgb.pkl','rb') as file:
 app = FastAPI()
 
 class request(BaseModel):
-    Industry: str
-    Term : int
-    NoEmp : int
-    GrAppv : float
-    NewExist : str
-    CreateJob : int
-    RetainedJob : int
-    FranchiseCode : str
-    UrbanRural : str
-    Real_estate : str
-    State : str
+    age : int
+    housing: str
+    marital : str
+    job : str
+    loan : str
+    balance : int
+    education : str
+    pdays : int
+    campaign : int
+    month : str
+    
     
 @app.post("/predict")
     
@@ -28,3 +28,5 @@ def predict(data:request):
 
     class_idx=xgb.predict(new_data)[0]
     return int(class_idx)
+
+ 
