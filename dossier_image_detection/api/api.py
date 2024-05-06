@@ -25,6 +25,7 @@ class request(BaseModel):
     
 def predict(data:request):
     new_data=pd.DataFrame(dict(data),index = [0])
+    print('@@@@@@@@@@@@@@@@@@@@@@@@@', new_data.dtypes)
 
     class_idx=xgb.predict(new_data)[0]
     return int(class_idx)
