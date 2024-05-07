@@ -84,6 +84,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'detection_images': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join('/home/apprenant/Documents/projet_final/dossier_image_detection', 'entrainement.db'),
     }
 }
 
@@ -132,3 +136,36 @@ STATICFILES_DIRS = [     BASE_DIR / "static", ]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'home'
+
+from pathlib import Path
+import logging
+import shutil
+import datetime
+
+# Définir le répertoire de sauvegarde des logs
+LOGS_DIR = os.path.join(BASE_DIR, 'logs')
+
+# Créer le répertoire s'il n'existe pas
+os.makedirs(LOGS_DIR, exist_ok=True)
+
+# Définir le format des logs
+LOG_FORMAT = '%(asctime)s [%(levelname)s] %(message)s'
+
+# Obtenir le chemin complet du fichier de log
+LOG_FILE = os.path.join(LOGS_DIR, 'lasted.log')
+
+# Renommer l'ancien fichier de log avec la date
+if os.path.exists(LOG_FILE):
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    new_log_file = os.path.join(LOGS_DIR, f'debug_{timestamp}.log')
+    shutil.move(LOG_FILE, new_log_file)
+
+# Configurer le logger pour enregistrer les logs dans le fichier
+logging.basicConfig(
+    level=logging.DEBUG,
+    format=LOG_FORMAT,
+    filename=LOG_FILE,
+)
+
+# Ajouter un handler de console pour afficher les logs dans la console également
+logging.getLogger().addHandler(logging.StreamHandler())
