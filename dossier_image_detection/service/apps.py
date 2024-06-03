@@ -11,7 +11,7 @@ class ServiceConfig(AppConfig):
 from django.apps import AppConfig
 
 class MyappConfig(AppConfig):
-    name = 'myapp'
+    name = 'service'
 
     def ready(self):
-        import myapp.signals
+        import service.signals

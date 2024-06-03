@@ -36,12 +36,15 @@ def api(request):
             print(type(raw_result))
             result = None
             if raw_result == '0':
-                result = 'Félicitations votre prêt a été accordé !'
+                result = 'Félicitations votre dépôt a été accepté !'
             elif raw_result == '1':
-                result = "Malheureusement votre dossier n'a pas été retenu , une prochaine fois peut-être ;)" 
+                result = "Malheureusement votre dossier n'a pas été retenu , une prochaine fois peut-être " 
 
             return render(request,"result.html",{"result":result})
-            
+
+        else:
+            return render(request, "error.html", {'form':quest})
+
     else:
 
 
