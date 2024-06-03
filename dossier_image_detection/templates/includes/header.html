@@ -1,12 +1,12 @@
-  
+{% load static %}
   <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
       <a href="{% url 'home' %}" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none" target="_self">
         <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
         {% comment %} <img src="{% static 'images/logo.jpeg' %}">  {% endcomment %}
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaFVLe69l4_h2v0rvB5wagLsd7GTPJwwHoGQ&usqp=CAU" width="70" height="50" loading="lazy">
+        <img src="{% static 'images/logo_dat.jpg' %}" width="100" height="100" loading="lazy">
 
-        <span class="fs-4">VisAge</span>
+        <span class="fs-4">Dépôt IA termes</span>
       </a>
       <a>
         {% if  user.is_authenticated%}
@@ -21,7 +21,7 @@
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="#" class="nav-link px-2 link-secondary"><i class="bi bi-house" ></i></a></li>
         <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark" target="_self">Home</a></li>
-        <li><a href="{% url 'api_app:api_app' %}" class="nav-link px-2 link-dark" target="_self">Services</a></li>
+        {% comment %} <li><a href="{% url 'api_app:api_app' %}" class="nav-link px-2 link-dark" target="_self">Services</a></li> {% endcomment %}
         <li><a href="{% url 'login' %}" class="nav-link px-2 link-dark" target="_self">Se connecter</a></li>
         <li><a href="{% url 'signup:sign_up' %}" class="nav-link px-2 link-dark" target="_self">S'inscrire</a></li>
         {% comment %} {% if  user.is_authenticated%}

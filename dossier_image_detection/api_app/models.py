@@ -61,3 +61,6 @@ class Features(models.Model):
     pdays = models.PositiveIntegerField(null=True, default=12)
     campaign=models.PositiveIntegerField(null=True, default=1)
     month = models.CharField(max_length=90, choices=choix_4, default=choix_4[0])
+
+
+    
